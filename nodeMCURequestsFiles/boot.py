@@ -16,7 +16,7 @@ gc.collect()
 
 #erez's home
 ssid = 'MyAltice 143c23'
-password = '5095-rose-36'
+password = ''
 
 # ssid = 'BCHA_Guest'
 # password = ''
