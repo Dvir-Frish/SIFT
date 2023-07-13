@@ -1,0 +1,89 @@
+[
+    {
+        "shelfID": "0",
+        "books": [
+            {
+                "uid": "9d11",
+                "position": "0"
+            },
+            {
+                "uid": "9dd4",
+                "position": "1"
+            },
+            {
+                "uid": "ddff",
+                "position": "2"
+            },
+            {
+                "uid": "6d51",
+                "position": "3"
+            },
+            {
+                "uid": "bd4e",
+                "position": "4"
+            },
+            {
+                "uid": "cdc8",
+                "position": "5"
+            }
+        ]
+    },
+    {
+        "shelfID": "1",
+        "books": [
+            {
+                "uid": "",
+                "position": "0"
+            },
+            {
+                "uid": "",
+                "position": "1"
+            },
+            {
+                "uid": "",
+                "position": "2"
+            },
+            {
+                "uid": "",
+                "position": "3"
+            },
+            {
+                "uid": "",
+                "position": "4"
+            },
+            {
+                "uid": "",
+                "position": "5"
+            }
+        ]
+    },
+    {
+        "shelfID": "2",
+        "books": [
+            {
+                "uid": "",
+                "position": "0"
+            },
+            {
+                "uid": "",
+                "position": "1"
+            },
+            {
+                "uid": "",
+                "position": "2"
+            },
+            {
+                "uid": "",
+                "position": "3"
+            },
+            {
+                "uid": "",
+                "position": "4"
+            },
+            {
+                "uid": "",
+                "position": "5"
+            }
+        ]
+    }
+]

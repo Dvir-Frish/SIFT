@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>SIFT Web Server</title>
+  <link rel="icon" type="image/png" href="pictures\siftLogo1.png" />
+</head>
+
+<body id="body">
+  <header>
+    <a href="https://sites.google.com/bcha-ct.org/sift" target="_blank">
+      <img src="pictures\siftLogo2.png" alt="" class="logo">
+    </a>
+  </header>
+  <div id="container-out" class="container-out" style="text-align: left; padding-left: 1%">
+    <div id="container-in" class="container-in">
+      <div class="search-container">
+        <div class="search-engine">
+          <input type="input" id="search-input" autocomplete="off" placeholder="Search Books" />
+          <button id="search-button" onclick="search()">Search</button>
+          <div class="messWarning"><button class="messNotify" onclick="showOrder()">Misplacements!</button>
+          </div>
+          <div class='searching hidden' id="search-data"></div>
+          <!--  format for text:  "title,author,genre,uid,shelf,pos;title2,author2..." -->
+          <p id="temporary-p" hidden></p>
+        </div>
+      </div>
+    </div>
+    <div id="mapDisplay">
+      <div id="classMapTitle" class="map">Map of shelves</div>
+      <div id="shelf1" style="border-bottom: solid;margin:2.5% 0 2.5% 0; padding-bottom: 3%;">
+        <button class="bookstack" id="shelfStack1">Shelf 1
+          <button onclick="loadInfo(0,0)" class="booksClass green shelf1">book 1 </button>
+          <button onclick="loadInfo(0,1)" class='booksClass green shelf1'>book 2 </button>
+          <button onclick="loadInfo(0,2)" class="booksClass green shelf1">book 3 </button>
+          <button onclick="loadInfo(0,3)" class="booksClass green shelf1">book 4 </button>
+          <button onclick="loadInfo(0,4)" class="booksClass green shelf1">book 5 </button>
+          <button onclick="loadInfo(0,5)" class="booksClass green shelf1">book 6 </button>
+        </button>
+      </div>
+      <div id="shelf2" style="border-bottom: solid;margin:2.5% 0 2.5% 0; padding-bottom: 3%;">
+        <button class="bookstack" id="shelfStack2">Shelf 2
+          <button onclick="loadInfo(1,0)" class="booksClass green shelf2">book 1 </button>
+          <button onclick="loadInfo(1,1)" class="booksClass green shelf2">book 2 </button>
+          <button onclick="loadInfo(1,2)" class="booksClass green shelf2">book 3 </button>
+          <button onclick="loadInfo(1,3)" class="booksClass green shelf2">book 4 </button>
+          <button onclick="loadInfo(1,4)" class="booksClass green shelf2">book 5 </button>
+          <button onclick="loadInfo(1,5)" class="booksClass green shelf2">book 6 </button>
+        </button>
+      </div>
+      <div id="shelf3" style="margin:2.5% 0 2.5% 0; padding-bottom: 3%;">
+        <button class="bookstack" id="shelfStack3">Shelf 3
+          <button onclick="loadInfo(2,0)" class="booksClass green shelf3">book 1 </button>
+          <button onclick="loadInfo(2,1)" class="booksClass green shelf3">book 2 </button>
+          <button onclick="loadInfo(2,2)" class="booksClass green shelf3">book 3 </button>
+          <button onclick="loadInfo(2,3)" class="booksClass green shelf3">book 4 </button>
+          <button onclick="loadInfo(2,4)" class="booksClass green shelf3">book 5 </button>
+          <button onclick="loadInfo(2,5)" class="booksClass green shelf3">book 6 </button>
+        </button>
+      </div>
+    </div>
+    <!-- <button onclick="unloadShelf()" id="returnButton" class="hidden returnB">&larr;</button> -->
+    <div id="sectionForMovements" class="map sectionForMovements hidden">Recommended movements to be done in order :
+      (S,B)&rarr;(S,B)</div>
+    <div id="bookInfoGen">
+      <div id="bookInfo" class="hidden bookInf"></div>
+      <button onclick="closeInfo()" id="xButton" class="hidden Xbtn">X</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+html * {
+  line-height: 1.5;
+  color: #000000;
+  font-family: Helvetica, sans-serif;
+}
+body {
+  background-color: rgb(255, 241, 225);
+}
+button{
+  cursor: pointer;
+}
+.returnB {
+  display: flex;
+}
+
+.bookstack {
+  border-style: none;
+  margin: 0.5%;
+  height: 30px;
+  width: 30%;
+  font-size: 16px;
+  display: block;
+  background-color: rgb(255, 224, 188);
+}
+
+.booksClass {
+  border-style: none;
+  margin: 0.5%;
+  height: 55px;
+  font-size: 8.5px;
+  width: 13%;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.bookInf {
+  position: absolute;
+  left: 40%;
+  top: 20%;
+  background-color: #f7ae8f;
+  border-color: black;
+  width: 20%;
+  height: 30%;
+  padding: 5%;
+  white-space: pre-line;
+}
+.searchBook {
+  text-align: left;
+  background-color: rgb(255, 224, 188);
+  border-style: none;
+  margin: 0.5% 0% 0.5% 0;
+  padding: 10px;
+  width: 100%;
+}
+.bookImage {
+  width: 20%;
+  height: 20%;
+  position: relative;
+}
+.bookImageInf {
+  width: 35%;
+  height: 55%;
+  position: absolute;
+  left: -40%;
+  top: 0%;
+  border: 10px solid #f7ae8f;
+  padding-top: 15.4%;
+  padding-bottom: 15.4%;
+  padding-left: 25px;
+  background-color: #f7ae8f;
+}
+#isBookCor {
+  display: inline;
+}
+#search-input {
+  width: 15%;
+}
+#search-button {
+  width: 4.7%;
+}
+.search-engine {
+  padding-top: 25px;
+  padding-bottom: 12px;
+}
+.xbtn {
+  position: absolute;
+  right: 30%;
+  top: 20%;
+  border-style: none;
+  background-color: #f7ae8f;
+  padding: 15px;
+}
+#returnButton {
+  border-style: none;
+  background-color: rgb(255, 241, 225);
+  font-size: 25px;
+}
+
+.green {
+  background-color: rgb(30, 236, 85, 0.66);
+}
+
+.red {
+  background-color: rgb(236, 30, 30, 0.66);
+}
+.redSearch {
+  color: rgb(218, 21, 21);
+}
+.greenSearch {
+  color: rgb(29, 223, 29);
+}
+.blur {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+.sectionForMovements {
+  padding: 15px;
+  position: absolute;
+  top: 160px;
+  left: 21.55%;
+  display: block;
+  font-size: 12px;
+  border-style: double;
+  width: 26.5%;
+}
+#classMapTitle {
+  display: block;
+  font-size: x-large;
+  padding-bottom: 20px;
+}
+#search-data{
+  height: 75%;
+  width: 19.7%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.messWarning{
+  color: rgb(218, 21, 21);
+  display: inline;
+  font-size: 200px;
+  position: relative;
+  top: 3px;
+}
+.messNotify{
+  color:rgb(218, 21, 21);
+  display: inline;
+  background-color: transparent;
+  border-style: solid;
+  border-color: rgb(218, 21, 21);
+  position: relative;
+  right: 0%;
+  bottom: 4px;
+  font-size: 12px;
+}
+.hidden {
+  display: none;
+}
+#mapDisplay {
+  top: 25px;
+  left: 50%;
+  width: 500px;
+  margin: 15px; 
+  position: absolute;
+}
+.bookButtonsDiv{
+  padding-bottom: 10px;
+}
+.logo{
+  width: 10%;
+  height: 10%;
+}
+.empty{
+  background-color: rgb(179, 176, 176);
+}

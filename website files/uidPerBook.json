@@ -1,0 +1,111 @@
+[
+    {
+        "author":"Jewish Book Council",
+        "title":"Paper brigade vol 1",
+        "uid":"bd4e",
+        "genre":"Literary Journal"
+    },
+    {
+        "author":"Jewish Book Council",
+        "title":"Paper brigade vol 6",
+        "uid":"fd60",
+        "genre":"Literary Journal"
+    },
+    {
+        "author":"Wayne Hoffman",
+        "title":"The End Of Her",
+        "uid":"9d11",
+        "genre":"Thriller/Mystery/Suspense/Psychological thriller/Psychological fiction/Domestic fiction"
+            
+    },
+    {
+        "author":"Jim Shepard",
+        "title":"The Book of Aron",
+        "uid":"9d3e",
+        "genre":"Historical fiction"
+    },
+    {
+        "author":"Peter Eisner",
+        "title":"The Popes Last Crusade",
+        "uid":"dd4b",
+        "genre":"Biography"
+    },
+    {
+        "author":"Charles Belfoure",
+        "title":"The Paris Architect",
+        "uid":"ddff",
+        "genre":"Historical fiction/Thriller"
+    },
+    {
+        "author":"Bonnie Garmus",
+        "title":"Lessons in Chemistry",
+        "uid":"6db2",
+        "genre":"Humor/Fiction/Romance/Satire"
+    },
+    {
+        "author":"Suaznne LaFleur",
+        "title":"Eight Keys",
+        "uid":"5dee",
+        "genre":"Fiction"
+    },
+    {
+        "author":"Beth Kanter and Allison Fine",
+        "title":"The Smart Non-Profit staying human-centered in an automated world",
+        "uid":"adf9",
+        "genre":"Nonprofit organizations/Organizational change"
+    },
+    {
+        "author":"Kenneth Wishnia and Chantelle Aimee Osman",
+        "title":"Jewish Noir II",
+        "uid":"1d42",
+        "genre":"Noir Fiction/Jewish Fiction"
+    },
+    {
+        "author":"Jacob Katz",
+        "title":"Exclusiveness and Tolerance",
+        "uid":"cdc8",
+        "genre":"History/Jewish/Judaica"
+    },
+    {
+        "author":"Emanuel Litvinoff",
+        "title":"The Penguin Book Of Jewish Short Stories",
+        "uid":"9dd4",
+        "genre":"Fiction"
+    },
+    {
+        "author":"Yitzchik Leib Bell",
+        "title":"Psalms That Speak To You",
+        "uid":"2dfc",
+        "genre":"Judaica"
+    },
+    {
+        "author":"Claudia Gray",
+        "title":"Star Wars - Lost Stars",
+        "uid":"edfc",
+        "genre":"Science fiction/Young adult fiction"
+    },
+    {
+        "author":"Ray Bradbury",
+        "title":"Fahrenheit 451",
+        "uid":"6d51",
+        "genre":"Science fiction/Dystopian fiction/Political ficton"
+    },
+    {
+        "author":"Rick Riordan",
+        "title":"Percy Jacksons Greek Gods",
+        "uid":"cd7a",
+        "genre":"Greek mythology/Young adult fiction/Short story/Fantasy fiction"
+    },
+    {
+        "author":"Markus Zusak",
+        "title":"The Book Thief",
+        "uid":"6d2d",
+        "genre":"Young adult fiction/Historical fiction/Bildungsroman"
+    },
+    {
+        "author":"Art Spiegelman",
+        "title":"Maus",
+        "uid":"ad52",
+        "genre":"Graphic Novel/Comics"
+    }
+]
