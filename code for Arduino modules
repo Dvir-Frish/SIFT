@@ -1,0 +1,212 @@
+//include libraries
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+#include <MFRC522.h>
+#include <Stepper.h>
+// pin layout for NRF
+#define CE_PIN 7
+#define CSN_PIN 8
+// pin layout fo0
+#define RST_PIN 9
+#define SS_PIN 10
+// frequancy
+const byte slaveAddress[5] = { 'A', 'A', 'A', 'A', 'A' };
+RF24 radio(CE_PIN, CSN_PIN);  // Create a Radio
+// list to send through NRF
+char dataToSend[32] = "";
+long startTime = millis;
+long currentTime=0;
+unsigned long currentMillis;
+unsigned long prevMillis;
+unsigned long txIntervalMillis = 1000;  // send once per second
+MFRC522 rfid(SS_PIN, RST_PIN);          // Instance of the class
+MFRC522::MIFARE_Key key;
+// Init array that will store new NUID
+byte nuidPICC[4];
+String tempStr="";
+String cartNumber = "2";
+String UIDs = cartNumber;
+int count = 0;
+bool stepperFor = true;
+bool stepperBack = false;
+long movmentTime = 2000;
+int movmentCount=0;
+void setup() {
+  Serial.begin(9600);
+  Serial.println("SimpleTx Starting");
+  radio.begin();
+  radio.setDataRate(RF24_250KBPS);
+  radio.setRetries(3, 5);  // delay, count
+  radio.setChannel(100);
+  radio.setPayloadSize(32);
+  radio.openWritingPipe(slaveAddress);
+  //stepper pins
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  SPI.begin();      // Init SPI bus
+  rfid.PCD_Init();  // Init MFRC522
+
+  for (byte i = 0; i < 6; i++) {
+    key.keyByte[i] = 0xFF;
+  }
+}
+
+//====================
+
+void loop() {
+  // stepper code
+  if(stepperFor){
+    currentTime=millis();
+    startTime=millis();  
+    while((currentTime-startTime)<movmentTime){
+      delay(3);
+      digitalWrite(2,LOW);
+      digitalWrite(3,LOW);
+      digitalWrite(4,LOW);
+      digitalWrite(5,HIGH);
+      delay(3);
+      digitalWrite(2,LOW);
+      digitalWrite(3,LOW);
+      digitalWrite(4,HIGH);
+      digitalWrite(5,LOW);
+      delay(3);
+      digitalWrite(2,LOW);
+      digitalWrite(3,HIGH);
+      digitalWrite(4,LOW);
+      digitalWrite(5,LOW);
+      delay(3);
+      digitalWrite(2,HIGH);
+      digitalWrite(3,LOW);
+      digitalWrite(4,LOW);
+      digitalWrite(5,LOW);
+      currentTime = millis();
+    }
+    startTime=millis();  
+    currentTime=0;
+  stepperFor = false;  
+  }
+  if(stepperBack){
+    currentTime=millis();
+    startTime=millis();  
+    while((currentTime-startTime)<movmentTime*6){
+      delay(3);
+      digitalWrite(2,HIGH);
+      digitalWrite(3,LOW);
+      digitalWrite(4,LOW);
+      digitalWrite(5,LOW);
+      delay(3);
+      digitalWrite(2,LOW);
+      digitalWrite(3,HIGH);
+      digitalWrite(4,LOW);
+      digitalWrite(5,LOW);
+      delay(3);
+      digitalWrite(2,LOW);
+      digitalWrite(3,LOW);
+      digitalWrite(4,HIGH);
+      digitalWrite(5,LOW);
+      delay(3);
+      digitalWrite(2,LOW);
+      digitalWrite(3,LOW);
+      digitalWrite(4,LOW);
+      digitalWrite(5,HIGH);
+      currentTime = millis();
+    }
+    startTime=millis();  
+    currentTime=0;
+  stepperBack = false;  
+  }
+  while(true){
+  for (int i = 0; i < UIDs.length(); i++) {
+      dataToSend[i] = UIDs[i];
+    }
+  if (UIDs.length() >= 29) {
+    currentMillis = millis();
+   if (currentMillis - prevMillis >= txIntervalMillis) {
+    send();
+    prevMillis = millis();
+   }
+    for (int i = 0; i < UIDs.length(); i++) { dataToSend[i] = ""; }
+    UIDs = cartNumber;
+    Serial.println("reset");
+    stepperBack=true;
+    break;
+ }  
+  if(millis()-startTime>3000){
+  UIDs.concat(",ffff");
+  stepperFor=true;
+  break;  
+  }
+  // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
+  if (!rfid.PICC_IsNewCardPresent())
+    return;
+
+  // Verify if the NUID has been readed
+  if (!rfid.PICC_ReadCardSerial())
+    return;
+
+  if (rfid.uid.uidByte[0] != nuidPICC[0] || rfid.uid.uidByte[1] != nuidPICC[1] || rfid.uid.uidByte[2] != nuidPICC[2] || rfid.uid.uidByte[3] != nuidPICC[3]) {
+    Serial.println(F("A new card has been detected."));
+    tempStr="";
+    // Store NUID into nuidPICC array
+    for (byte i = 0; i < 4; i++) {
+      nuidPICC[i] = rfid.uid.uidByte[i];
+    }
+    Serial.print(F("Card UID:"));
+
+    for (byte i = 0; i < 2; i++) {
+      Serial.print(rfid.uid.uidByte[i], HEX);
+      // if (rfid.uid.uidByte[i] < 10) UIDs.concat("0");
+      tempStr.concat(String(rfid.uid.uidByte[i], HEX));
+    }
+    Serial.println();
+    //check that the uid was assigned correctly
+    if(UIDs.indexOf(tempStr)<0){
+      UIDs.concat(",");
+      for(int i=0;i<tempStr.length();i++){
+        UIDs.concat(tempStr[i]);
+      }
+  Serial.println("variable uid: ");
+  Serial.println(UIDs);
+  //assign the string to a list that will be sent through NRF
+    stepperFor=true;
+    break;
+    }else{
+      Serial.println("already read that book");
+      return;
+    }
+    
+  } else Serial.println(F("Card read previously."));
+  // Halt PICC
+  rfid.PICC_HaltA();
+
+  // Stop encryption on PCD
+  rfid.PCD_StopCrypto1();
+  
+  }
+}
+
+//====================
+
+void send() {
+  bool rslt;
+  rslt = radio.write(&dataToSend, sizeof(dataToSend));
+  // Always use sizeof() as it gives the size as the number of bytes.
+  // For example if dataToSend was an int sizeof() would correctly return 2
+
+  Serial.print("Data Sent ");
+  Serial.print(dataToSend);
+  if (rslt) {
+    Serial.println("  Acknowledge received");
+  } else {
+    Serial.println(" Tx failed");
+    currentMillis = millis();
+   if (currentMillis - prevMillis >= txIntervalMillis) {
+    send();
+    prevMillis = millis();
+    delay(50);
+   }
+  }
+}
